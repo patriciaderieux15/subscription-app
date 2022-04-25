@@ -2,7 +2,13 @@ import { Navbar, NavItem, NavLink } from 'react-bootstrap';
 
 
 const Nav = () => {
-    return <nav>home</nav>
+    return <Navbar>
+        <NavItem>
+            <NavLink>
+                Home
+            </NavLink>
+        </NavItem>
+    </Navbar>
 }
 
 export default Nav;
