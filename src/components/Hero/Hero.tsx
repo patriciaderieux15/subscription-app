@@ -34,7 +34,12 @@ const Hero = () => {
                     Feed your mind with the best
                 </Heading>
                 <SubHeading>Grow, learn, and become more successful by reading some of the top article by highly reputable individuals</SubHeading>
-                <ModalComponent />
+                <ModalComponent 
+                    text='Signup' variant='primary'
+                />
+                   <ModalComponent variant='danger'
+                    text='Login'
+                />
             </HeaderContainer>
         </Container>
 
