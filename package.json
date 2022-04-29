@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/patriciaderieux15/subscription-app/issues"
   },
-  "homepage": "https://github.com/patriciaderieux15/subscription-app#readme"
+  "homepage": "https://github.com/patriciaderieux15/subscription-app#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
 }
