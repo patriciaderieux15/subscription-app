@@ -1,6 +1,7 @@
 import express from "express";
 import { body, validationResult } from 'express-validator';
-
+import User from '../models/user';
+import bcrypt from 'bcryptjs';
 
 const router = express.Router();
 
@@ -15,15 +16,33 @@ router.post('/signup', body('email').isEmail().withMessage('The emai is invalid'
             }
         })
 
-        return res.json({ errors });
+        return res.json({ errors, data: null });
     }
 
     const { email, password } = req.body;
 
-    res.json({
+    
+    const user = await User.findOne({email})
+
+    if(user){
+        return res.json({
+            errors: [
+                {
+                    msg: "Email already in use"
+                }
+            ],
+            data: null
+        })
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = await User.create({
         email,
-        password
-    });
+        password: hashedPassword
+    })
+
+    res.json(user);
 } )
 
 
