@@ -20,7 +20,13 @@ const ModalComponent = ({text, variant,isSignupFlow }: ModalProps) => {
     const handleClick =() => {
         if(isSignupFlow){
             axios.post('http://localhost:8080/auth/signup', {
-
+                email,
+                password
+            })
+        } else {
+            axios.post('http://localhost:8080/auth/login', {
+                email,
+                password
             })
         }
     }
@@ -48,7 +54,7 @@ const ModalComponent = ({text, variant,isSignupFlow }: ModalProps) => {
                             Password
                         </InputGroup.Text>
                         <FormControl
-                            type='password'
+                            type='password' value={password} onChange={(e) => setPassword(e.target.value)}
                         />
                     </InputGroup>
                 </Modal.Body>
