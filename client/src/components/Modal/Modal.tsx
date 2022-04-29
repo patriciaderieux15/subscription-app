@@ -17,9 +17,10 @@ const ModalComponent = ({text, variant,isSignupFlow }: ModalProps) => {
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
 
-    const handleClick =() => {
+    const handleClick = async () => {
+        let data;
         if(isSignupFlow){
-            axios.post('http://localhost:8080/auth/signup', {
+        const response = await axios.post('http://localhost:8080/auth/signup', {
                 email,
                 password
             })
