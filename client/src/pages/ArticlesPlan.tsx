@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 const CardsContainer = styled.div`
   display: flex;
@@ -49,6 +49,12 @@ const ArticlesPlan = () => {
     );
     setPrices(response.data);
   };
+
+  const backgroundColors: any = {
+    Basic: "rgb(104, 219, 104)",
+    Standard: "rgb(185, 42, 23, 0.835)",
+    Premium: "pink",
+  };
   return (
     <Container>
       <CardsContainer>
@@ -57,11 +63,21 @@ const ArticlesPlan = () => {
             <Card
               style={{ width: "18rem", height: "25rem", marginRight: "2rem" }}
             >
-              <CardHeader>
+              <CardHeader
+                style={{ backgroundColor: backgroundColors[price.nickname] }}
+              >
                 <PriceCircle>
                   <PriceText>${price.unit_amount / 100}</PriceText>
                 </PriceCircle>
               </CardHeader>
+              <Card.Body>
+                <Card.Title style={{ fontSize: "2rem" }}>
+                  {price.nickname}
+                </Card.Title>
+                <Button variant="primary" className="mt-2">
+                  Buy now
+                </Button>
+              </Card.Body>
             </Card>
           );
         })}
