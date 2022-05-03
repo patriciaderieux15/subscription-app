@@ -48,7 +48,8 @@ router.post('/signup', body('email').isEmail().withMessage('The emai is invalid'
 
     const newUser = await User.create({
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        customerStripeId: customer.id
     })
 
     const token = await JWT.sign(
@@ -134,7 +135,8 @@ router.get('/me', checkAuth, async (req, res) => {
         data: {
             user: {
                 id: user._id,
-                email: user.email
+                email: user.email,
+                stripeCustomerId: user.stripeCustomerId
             }
         }
     })
