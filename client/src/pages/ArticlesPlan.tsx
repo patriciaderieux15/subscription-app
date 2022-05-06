@@ -1,5 +1,5 @@
-import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import axios from "axios";
 import styled from "styled-components";
 import { Card, Button } from "react-bootstrap";
@@ -47,7 +47,19 @@ const ArticlesPlan = () => {
     const { data: response } = await axios.get(
       "http://localhost:8080/subs/prices"
     );
+    console.log(response);
     setPrices(response.data);
+  };
+
+  const createSession = async (priceId: string) => {
+    const { data: response } = await axios.post(
+      "http://localhost:8080/subs/session",
+      {
+        priceId,
+      }
+    );
+
+    window.location.href = response.url;
   };
 
   const backgroundColors: any = {
@@ -55,6 +67,7 @@ const ArticlesPlan = () => {
     Standard: "rgb(185, 42, 23, 0.835)",
     Premium: "pink",
   };
+
   return (
     <Container>
       <CardsContainer>
@@ -74,7 +87,11 @@ const ArticlesPlan = () => {
                 <Card.Title style={{ fontSize: "2rem" }}>
                   {price.nickname}
                 </Card.Title>
-                <Button variant="primary" className="mt-2">
+                <Button
+                  variant="primary"
+                  className="mt-2"
+                  onClick={() => createSession(price.id)}
+                >
                   Buy now
                 </Button>
               </Card.Body>
