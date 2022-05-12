@@ -18,7 +18,7 @@ const CardsContainer = styled.div`
 
 const Card = styled.div`
   height: 55rem;
-  width: 32%;
+  width: 33%;
   box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.2);
   padding: 2rem;
   border-radius: 2rem;
@@ -42,8 +42,7 @@ const NoArticlesContainer = styled.div`
   justify-content: center;
   text-align: center;
   padding: 20rem 0;
-  flex-directiong: column;
-
+  flex-direction: column;
   & a {
     font-size: 2rem;
     text-decoration: none;
@@ -76,7 +75,7 @@ const Articles = () => {
         <CardsContainer>
           {articles.map((article) => (
             <Card key={article.id}>
-              <Image src={article.imageUrl}></Image>
+              <Image src={article.imageUrl} />
               <Header>{article.title}</Header>
               <Content>{article.content}</Content>
             </Card>
